@@ -1,0 +1,15 @@
+/server/node_modules/
+/client/node_modules/
+
+/server/.env
+
+npm-debug.log
+yarn-error.log
+
+.DS_Store
+Thumbs.debug
+
+/frontend/build/
+
+/server/npm-debug.log
+/frontend/dist
