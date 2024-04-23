@@ -1,21 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+require('dotenv').config();
 
-// Load environment variables
-dotenv.config();
+// Database
+const connectDB = require('./database/db');
 
 const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-console.log(process.env.MONGO_URI);
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log('MongoDB connected successfully!'))
-.catch(err => console.error('MongoDB connection failed: ', err));
-
+connectDB();
 
 // Simple route to verify server is running
 app.get('/', (req, res) => {
