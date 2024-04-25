@@ -6,7 +6,7 @@ const router = express.Router();
 // Endpoint to create a new skill
 router.post('/', async (req, res) => {
   try {
-    const skill = await skillService.createSkill(req.body);
+    const skill = await skillsService.createSkill(req.body);
     res.status(201).json(skill);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 // Endpoint to retrieve all skills
 router.get('/', async (req, res) => {
   try {
-    const skills = await skillService.getAllSkills();
+    const skills = await skillsService.getAllSkills();
     res.status(200).json(skills);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 // Endpoint to retrieve a skill by ID
 router.get('/:id', async (req, res) => {
   try {
-    const skill = await skillService.getSkillById(req.params.id);
+    const skill = await skillsService.getSkillById(req.params.id);
     if (!skill) {
       return res.status(404).json({ message: 'Skill not found' });
     }
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 // Endpoint to update a skill
 router.put('/:id', async (req, res) => {
   try {
-    const updatedSkill = await skillService.updateSkill(req.params.id, req.body);
+    const updatedSkill = await skillsService.updateSkill(req.params.id, req.body);
     if (!updatedSkill) {
       return res.status(404).json({ message: 'Skill not found' });
     }
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
 // Endpoint to delete a skill
 router.delete('/:id', async (req, res) => {
   try {
-    await skillService.deleteSkill(req.params.id);
+    await skillsService.deleteSkill(req.params.id);
     res.status(200).json({ message: 'Skill deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
