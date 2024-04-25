@@ -1,5 +1,5 @@
 const express = require('express');
-const skillService = require('../services/skillService'); // Might need to adjust path
+const skillsService = require('../services/skillsService'); 
 
 const router = express.Router();
 
