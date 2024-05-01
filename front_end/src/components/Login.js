@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Need to add login logic
+    // Placeholder for login logic - need to implement this
+    // Once the user successfully logs in, navigate to the Create Job page
+    // For demonstration purposes, let's navigate to "/create-job" immediately
+    navigate('/create-job');
   };
 
   return (
@@ -31,7 +35,7 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             className="form-input"
           />
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" onClick={handleSubmit} className="login-button">Login</button>
         </form>
         <p className="signup-text">
           <Link to="/create-account" className="signup-link">
