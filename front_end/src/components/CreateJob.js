@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Theme, Flex, Text, TextField, Button } from '@radix-ui/themes';
-import { Cross2Icon } from '@radix-ui/react-icons';
+import './CreateJob.css';
 
 const CreateJob = () => {
+  // State for job details
   const [jobDetails, setJobDetails] = useState({
     title: '',
     description: '',
@@ -11,24 +11,21 @@ const CreateJob = () => {
     status: 'open',
   });
 
-  const [skillInput, setSkillInput] = useState('');
-
+  // Function to handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setJobDetails({ ...jobDetails, [name]: value });
   };
 
-  const handleSkillInputChange = (e) => {
-    setSkillInput(e.target.value);
-  };
-
+  // Function to add a skill to the job details
   const handleAddSkill = () => {
-    if (skillInput && !jobDetails.skills.includes(skillInput)) {
+    if (jobDetails.skills.indexOf(skillInput) === -1 && skillInput !== '') {
       setJobDetails({ ...jobDetails, skills: [...jobDetails.skills, skillInput] });
       setSkillInput('');
     }
   };
 
+  // Function to remove a skill from the job details
   const handleRemoveSkill = (skillToRemove) => {
     setJobDetails({
       ...jobDetails,
@@ -36,68 +33,101 @@ const CreateJob = () => {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you would handle the submission of the job details
-    console.log(jobDetails);
-  };
+  // State for the input field for adding skills
+  const [skillInput, setSkillInput] = useState('');
 
   return (
-    <Theme>
-      <Flex direction="column" gap="2">
-        <Text size="2" css={{ marginBottom: '1rem' }}>New Job Entry</Text>
-        
-        <TextField 
-          name="title" 
-          value={jobDetails.title} 
-          onChange={handleInputChange} 
-          placeholder="Job Title" 
-          required 
-        />
-        
-        <TextField 
-          name="description" 
-          value={jobDetails.description} 
-          onChange={handleInputChange} 
-          placeholder="Job Description" 
-          required 
-        />
-        
-        <TextField 
-          name="company" 
-          value={jobDetails.company} 
-          onChange={handleInputChange} 
-          placeholder="Company Name" 
-        />
-        
-        <Flex css={{ flexDirection: 'row', flexWrap: 'wrap', gap: '10px' }}>
-          {jobDetails.skills.map((skill, index) => (
-            <Flex key={index} css={{ alignItems: 'center', gap: '6px' }}>
-              <Text>{skill}</Text>
-              <Button onClick={() => handleRemoveSkill(skill)}>
-                <Cross2Icon />
-              </Button>
-            </Flex>
-          ))}
-          <TextField 
-            value={skillInput} 
-            onChange={handleSkillInputChange} 
-            placeholder="Enter a skill" 
-            css={{ width: 'auto', flexGrow: 1 }}
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6 space-y-6">
+        <h1 className="text-3xl font-semibold text-center">New Job Entry</h1>
+
+        {/* Job Title */}
+        <div>
+          <label htmlFor="title" className="block text-sm font-medium text-gray-700">Job Title</label>
+          <input
+            id="title"
+            name="title"
+            type="text"
+            value={jobDetails.title}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter job title"
           />
-          <Button onClick={handleAddSkill}>Add Skill</Button>
-        </Flex>
-        
-        <TextField 
-          name="status" 
-          value={jobDetails.status} 
-          onChange={handleInputChange} 
-          placeholder="Status" 
-        />
-        
-        <Button variant="blue" onClick={handleSubmit}>Submit</Button>
-      </Flex>
-    </Theme>
+        </div>
+
+        {/* Job Description */}
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Job Description</label>
+          <textarea
+            id="description"
+            name="description"
+            value={jobDetails.description}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter job description"
+          />
+        </div>
+
+        {/* Company Name */}
+        <div>
+          <label htmlFor="company" className="block text-sm font-medium text-gray-700">Company Name</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            value={jobDetails.company}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Enter company name"
+          />
+        </div>
+
+        {/* Skills */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Skills</label>
+          <div className="mt-1 flex flex-wrap gap-2">
+            {jobDetails.skills.map((skill, index) => (
+              <div key={index} className="bg-gray-200 rounded-md px-2 py-1 flex items-center">
+                <span>{skill}</span>
+                <button onClick={() => handleRemoveSkill(skill)} className="ml-2 text-red-600">
+                  Remove
+                </button>
+              </div>
+            ))}
+            <input
+              value={skillInput}
+              onChange={(e) => setSkillInput(e.target.value)}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter a skill"
+            />
+            <button onClick={handleAddSkill} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Add Skill
+            </button>
+          </div>
+        </div>
+
+        {/* Status */}
+        <div>
+          <label htmlFor="status" className="block text-sm font-medium text-gray-700">Status</label>
+          <select
+            id="status"
+            name="status"
+            value={jobDetails.status}
+            onChange={handleInputChange}
+            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+
+        {/* Submit button */}
+        <button onClick={() => console.log(jobDetails)} className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          Submit
+        </button>
+      </div>
+    </div>
   );
 };
 

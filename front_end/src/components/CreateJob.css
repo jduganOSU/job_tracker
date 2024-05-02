@@ -1,1 +1,29 @@
-@import '@radix-ui/themes/styles.css';
+/* styles.css */
+
+/* index.css */
+
+/* Import the Space Grotesk font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Apply the Space Grotesk font to the body or desired elements */
+body {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to full viewport height */
+  }
+  
+  .card {
+    max-width: 400px; /* Set the maximum width of the card */
+    width: 100%; /* Ensure the card fills the available width */
+    background-color: #ffffff; /* Set background color to white */
+    border-radius: 12px; /* Set border radius for rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Add box shadow for depth */
+    padding: 20px; /* Add padding inside the card */
+  }
+  
