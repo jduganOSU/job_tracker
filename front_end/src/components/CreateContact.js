@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { addContact } from '../api/networkContactService'; // Assuming you have this API service
-import './css/AddContact.css'; // Use a CSS file to style this component similarly
+import './css/CreateContact.css'; // Use a CSS file to style this component similarly
 
 const AddContactModal = ({ closeModal }) => {
   const [contactDetails, setContactDetails] = useState({
