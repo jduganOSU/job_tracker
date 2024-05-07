@@ -1,6 +1,6 @@
 # Node modules dependencies
 /server/node_modules/
-/client/node_modules/
+/front_end/node_modules/
 /node_modules
 
 # Environment configs

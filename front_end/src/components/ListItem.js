@@ -9,7 +9,7 @@ const ListItem = ({ item, type }) => {
           <div>{item.title}</div>
           <div>{item.description}</div>
           <div>{item.company}</div>
-          <div>{item.skills.join(', ')}</div>
+          <div>{item.skills}</div>
           <div>{item.status}</div>
         </>
       ) : (
