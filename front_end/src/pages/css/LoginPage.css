@@ -1,0 +1,62 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('../../../images/BackgroundLogin.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 20px;
+  }
+  
+
+  .form-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    width: 400px; /* Adjust as needed */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .welcome-text, .signup-text, .contact-text {
+    color: #2769b4;
+    margin-bottom: 20px;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .form-input {
+    width: 100%; /* Adjust width to match form width */
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2769b4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+  
+  .signup-link, .contact-text {
+    color: #2769b4;
+    text-decoration: underline;
+  }
+  
+  .signup-link:hover, .contact-text:hover {
+    text-decoration: none;
+  }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import { useNavigate } from 'react-router-dom';
+import './css/Login.css';
 
-function Login() {
+function Login({ onCreateAccount }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -12,12 +12,11 @@ function Login() {
     // Placeholder for login logic - need to implement this
     // Once the user successfully logs in, navigate to the Create Job page
     // For demonstration purposes, let's navigate to "/create-job" immediately
-    navigate('/create-job');
+    navigate('/user-home');
   };
 
   return (
     
-    <div className="login-container">
       <div className="form-box">
         <h2 className="welcome-text">Welcome!</h2>
         <form onSubmit={handleSubmit} className="login-form">
@@ -38,13 +37,12 @@ function Login() {
           <button type="submit" onClick={handleSubmit} className="login-button">Login</button>
         </form>
         <p className="signup-text">
-          <Link to="/create-account" className="signup-link">
-            Need an Account? Click here to sign up
-          </Link>
-        </p>
+        <button className="signup-link" onClick={onCreateAccount}>
+          Need an Account? Click here to sign up
+        </button>
+      </p>
         <p className="contact-text">Contact Us</p>
       </div>
-    </div>
   );
 }
 
