@@ -1,6 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import './Footer.scss'; // Import your footer styles
+import './css/Footer.scss'; // Import your footer styles
 
 function Footer() {
   return (
@@ -21,8 +20,8 @@ function Footer() {
       <div className="right-section">
         <p>Follow us</p>
         <div className="social-icons">
-          <FaLinkedin className="icon" />
-          <FaGithub className="icon" />
+
+
         </div>
       </div>
       {/* <div className="copyright">

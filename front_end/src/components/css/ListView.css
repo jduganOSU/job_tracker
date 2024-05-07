@@ -1,0 +1,30 @@
+/* ListView.css */
+.list-view {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 3fr 1fr; /* Adjust the fr units based on content needs */
+    margin-top: 25px;
+  }
+  
+  .grid-header, .list-item {
+    display: contents; /* This makes the children (cells) line up with grid's columns */
+  }
+  
+  .header-cell, .list-item div {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #807e7e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .list-item div {
+    padding: 15px;
+    color: rgb(197, 197, 197);
+  }
+  
+  .header-cell {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+  

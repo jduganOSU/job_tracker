@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #161B22; /* Set the same background color as the body */
+    color: #040404;
+
+    padding: 25px 50px; /* Match the padding of the main content */
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.middle-section {
+    display: flex;
+}
+
+.middle-section a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.login-button {
+    border: none;
+    background-color: #fff;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
