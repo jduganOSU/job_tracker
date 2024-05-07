@@ -1,58 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Typed from 'typed.js';
-import FAQDropdown from './FAQDropdown';
-import Footer from './Footer';
-import './HomePage.scss'; // Import Sass file
+import Navbar from '../components/Navbar';
+import FAQDropdown from '../components/FAQDropdown';
+import Footer from '../components/Footer';
+import './css/HomePage.scss'; // Import Sass file
 import undrawStatsSVG from '../assets/undraw_stats.svg';
 
 function HomePage() {
   const navigate = useNavigate(); // Get the navigation function
   const el = useRef(null);
-  const [dropdownOpen, setDropdownOpen] = useState(null);
-
-  // Toggle dropdown
-  const toggleDropdown = (index) => {
-    setDropdownOpen(dropdownOpen === index ? null : index);
-  };
 
   // Function to handle login button click event
   const handleLoginButtonClick = () => {
     navigate('/login'); // Navigate to the login page
   };
 
-  useEffect(() => {
-    const typed = new Typed(el.current, {
-      strings: ['Apply.', 'Track.', 'Conquer.'],
-      typeSpeed: 120,
-      backSpeed: 120,
-      loop: true,
-      backDelay: 2000,
-    });
-
-    // Cleanup
-    return () => {
-      typed.destroy();
-    };
-  }, []);
 
   return (
     <div className="homepage">
-      <div className="navbar">
-        <div className="left-section">
-          <div className="logo">Career Pilot</div>
-        </div>
-        <div className="middle-section">
-          <a href="#about">About</a>
-          <a href="#features">Features</a>
-          <a href="#guide">Guide</a>
-        </div>
-        <div className="right-section">
-          <button className="login-button" onClick={handleLoginButtonClick}>
-            Login
-          </button>
-        </div>
-      </div>
+      <Navbar />
       <div className="main-section">
         <div className="main-content">
           <h1>Your job journey simplified</h1>

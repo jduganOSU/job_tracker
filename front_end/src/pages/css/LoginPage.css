@@ -1,40 +1,38 @@
-.create-account-container {
+.login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url('../../images/BackgroundLogin.jpg');
+    background-image: url('../../../images/BackgroundLogin.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
+    padding: 20px;
   }
   
+
   .form-box {
     background-color: white;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Match the width to Login.css */
+    z-index: 2;
+    width: 400px; /* Adjust as needed */
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 2;
   }
-  
-  .header-text, .login-text, .contact-text {
+  .welcome-text, .signup-text, .contact-text {
     color: #2769b4;
-    text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .account-form {
-    width: 100%;
+    z-index: 2;
+    text-align: center;
   }
   
   .form-input {
-    width: 100%; /* Make input width match the form width */
+    width: 100%; /* Adjust width to match form width */
     padding: 12px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
@@ -42,7 +40,7 @@
     font-size: 16px;
   }
   
-  .submit-button {
+  .login-button {
     width: 100%;
     padding: 12px;
     background-color: #2769b4;
@@ -54,12 +52,11 @@
     margin-bottom: 16px;
   }
   
-  .login-link, .contact-text {
+  .signup-link, .contact-text {
     color: #2769b4;
-    text-decoration: none;
-    cursor: pointer;
+    text-decoration: underline;
   }
   
-  .login-link:hover, .contact-text:hover {
-    text-decoration: underline;
+  .signup-link:hover, .contact-text:hover {
+    text-decoration: none;
   }

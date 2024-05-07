@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url('../../images/BackgroundLogin.jpg');
+    background-image: url('../../../images/BackgroundLogin.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -51,12 +51,20 @@
     cursor: pointer;
     margin-bottom: 16px;
   }
+
+.signup-link {
+    background: none;  /* Removes the button background */
+    border: none;      /* Removes the button border */
+    padding: 0;        /* Removes padding */
+    font-size: 16px;   /* Adjust the font size as necessary */
+    cursor: pointer;   /* Ensures the cursor changes to pointer on hover */
+    text-decoration: underline;  /* Underline to mimic hyperlink */
+}
+
+.signup-link:hover {
+    text-decoration: none;  /* Optional: removes the underline on hover to mimic hyperlink behavior */
+    background: none;
+}
+
   
-  .signup-link, .contact-text {
-    color: #2769b4;
-    text-decoration: underline;
-  }
-  
-  .signup-link:hover, .contact-text:hover {
-    text-decoration: none;
-  }
+

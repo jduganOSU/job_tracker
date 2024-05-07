@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FAQDropdown.scss'; // Import Sass file
+import './css/FAQDropdown.scss'; // Import Sass file
 
 function FAQDropdown() {
   const [isOpen, setIsOpen] = useState(false);

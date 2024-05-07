@@ -1,0 +1,8 @@
+/* Assuming you have a JobList.css */
+.job-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    padding: 20px; /* Padding around the container */
+    justify-content: center; /* Center the cards horizontally */
+}

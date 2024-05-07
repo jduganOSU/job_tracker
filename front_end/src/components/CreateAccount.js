@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './CreateAccount.css'; // Ensure this CSS file exists with the correct styles
+import './css/CreateAccount.css'; // Ensure this CSS file exists with the correct styles
 
-function CreateAccount() {
+function CreateAccount({ onBackToLogin }) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +14,6 @@ function CreateAccount() {
   };
 
   return (
-    <div className="create-account-container">
       <div className="form-box">
         <h1 className="header-text">Create Account</h1>
         <form onSubmit={handleSubmit} className="account-form">
@@ -57,11 +55,10 @@ function CreateAccount() {
           <button type="submit" className="submit-button">Sign Up</button>
         </form>
         <p className="login-text">
-          <Link to="/" className="login-link">Already have an account? Click here to login</Link>
+        <button className="login-link" onClick={onBackToLogin}>Back to Login</button>
         </p>
         <p className="contact-text">Contact Us</p>
       </div>
-    </div>
   );
 }
 
