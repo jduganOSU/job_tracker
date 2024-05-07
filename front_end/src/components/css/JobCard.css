@@ -1,14 +1,17 @@
 .job-card {
-    width: 23%; 
-    margin: 1%;  
+    width: 23%;
+    margin: 1%;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 15px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    box-sizing: border-box; 
+    box-sizing: border-box;
+    display: flex; /* Using flex to control layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Space between header/details and buttons */
+    height: 250px; /* Fixed height for consistency */
 }
-
 
 .job-header {
     display: flex;
@@ -28,6 +31,11 @@
     color: #666;
 }
 
+.job-details {
+    flex-grow: 1; /* Allows this section to grow and fill available space */
+    overflow: hidden; /* Hide overflow content */
+}
+
 .job-details p {
     margin: 5px 0;
     font-size: 14px;
@@ -37,19 +45,19 @@
 .button-container {
     display: flex;
     justify-content: space-evenly;
-    width: 100%; /* Full width of the card */
+    width: 100%; /* Ensures the container fills the width */
 }
 
 button {
-    padding: 4px 8px; /* More padding for a better button appearance */
+    padding: 4px 8px;
     border: none;
     border-radius: 4px;
-    background-color: #007BFF; /* Bootstrap primary color for example */
+    background-color: #007BFF;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
 }

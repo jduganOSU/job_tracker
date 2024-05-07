@@ -1,7 +1,23 @@
 import React from 'react';
 import './css/ListItem.css';
+import { deleteJob } from '../api/jobService';
+import { deleteCompany } from '../api/companyService';
 
-const ListItem = ({ item, type }) => {
+const ListItem = ({ item, type, onDelete }) => {
+  const handleDelete = async () => {
+    try {
+      if (type === 'jobs') {
+        await deleteJob(item._id);
+      } else if (type === 'companies') {
+        await deleteCompany(item._id);
+      }
+      onDelete(item._id);  // Callback to update UI
+      console.log(`${type.slice(0, -1)} deleted successfully`);
+    } catch (error) {
+      console.error(`Failed to delete ${type.slice(0, -1)}:`, error);
+    }
+  };
+
   return (
     <div className="list-item">
       {type === 'jobs' ? (
@@ -20,6 +36,9 @@ const ListItem = ({ item, type }) => {
           <div>{item.description}</div>
         </>
       )}
+      <div className="buttonDiv">
+        <button onClick={handleDelete}>Delete</button>
+      </div>
     </div>
   );
 };
