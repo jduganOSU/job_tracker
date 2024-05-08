@@ -17,6 +17,9 @@ const JobSchema = new mongoose.Schema({
   company: { type: String, required: true },
   skills: [{ type: String, required: true }],
   postedDate: { type: Date, default: Date.now },
-  status: { type: String, default: 'open' } // Example: open, closed, cancelled
+  status: { type: String, default: 'open' }, // Example: open, closed, cancelled
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to User model
 });
+
+JobSchema.index({ userId: 1 });
 module.exports = mongoose.model('Job', JobSchema);

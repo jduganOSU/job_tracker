@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { createUser } from '../api/userService';
 import './css/CreateAccount.css'; // Ensure this CSS file exists with the correct styles
 
 function CreateAccount({ onBackToLogin }) {
@@ -7,10 +9,25 @@ function CreateAccount({ onBackToLogin }) {
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Need to add create account logic
+    const userData = {
+      username: username,
+      email: email, 
+      password: password, 
+      firstname: firstName, 
+      lastname: lastName
+    }
+    try {
+      const response = await createUser(userData);
+      console.log('User created successfully:', response);
+      onBackToLogin();
+    } catch (error) {
+      console.error('Failed to create user:', error);
+      alert('Failed to create account. Please try again.');
+    }
   };
 
   return (

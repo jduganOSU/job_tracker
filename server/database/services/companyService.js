@@ -6,6 +6,11 @@ const companyService = {
         return await company.save();
     },
 
+     // Function to fetch all jobs for a specific user
+     getAllCompaniesForUser: async function(userId) {
+        return await Company.find({ userId: userId });
+    },
+
     getAllCompanies: async function() {
         return await Company.find();
     },
