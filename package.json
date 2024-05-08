@@ -1,0 +1,21 @@
+{
+  "name": "job_tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install:front_end": "cd front_end && npm install",
+    "install:server": "cd server && npm install",
+    "install:all": "npm run install:front_end && npm run install:server",
+    "start:front_end": "cd front_end && npm start",
+    "start:server": "cd server && npm start",
+    "start:all": "concurrently \"npm run start:server\" \"npm run start:front_end\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
