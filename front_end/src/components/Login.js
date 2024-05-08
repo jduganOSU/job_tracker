@@ -16,7 +16,7 @@ function Login({ onCreateAccount }) {
       // Call onLoginSuccess to update App state or redirect user
       navigate('/user-home');
     } catch (error) {
-      setError(error.message);
+      console.log(error);
     }
   };
 
