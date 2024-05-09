@@ -1,14 +1,12 @@
-
 html, body {
     height: 100%; /* Ensure html and body take up the entire viewport height */
     margin: 0;
 }
 
 body {
-    background-color: #161B22;
+    background-color: #000000;
     overflow-x: hidden;
 }
-  
 
 .homepage {
     .navbar {
@@ -16,8 +14,8 @@ body {
       justify-content: space-between;
       align-items: center;
       padding: 20px;
-      background-color: #161B22; /* Set the same background color as the body */
-      color: #040404;
+      //background-color: #161B22; /* Set the same background color as the body */
+      //color: #040404;
 
       padding: 25px 50px; /* Match the padding of the main content */
 
@@ -63,7 +61,7 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 50px;
-        background-color: #161B22;
+        //background-color: #161B22;
         color: #fff;
         width: 100%;
       }
@@ -137,27 +135,37 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 120px 50px; /* Match the padding of the main content */
-        background-color: #161B22; /* Same background color as main section */
+        //background-color: #161B22; /* Same background color as main section */
         color: #fff;
-    
+        .green-bg {
+            background-color: #4CAF50; /* Change this color to your desired background color */
+            transition: background-color 0.5s ease; /* Optional: Add transition for smooth color change */
+        }
+
         .new-content {
-          width: 55%; /* Adjust width as needed */
+          width: 55%; 
         }
-    
+
         .new-image {
-          width: 40%; /* Adjust width as needed */
+          width: 40%; 
         }
-    
+
         h2 {
           font-size: 20px;
           font-weight: 900;
           margin-bottom: 10px;
         }
-    
+
+        .sub-header {
+          font-size: 22px; /* Adjust font size for small header */
+          font-weight: 600; /* Add font weight if necessary */
+          margin-bottom: 4px; /* Adjust margin as needed */
+        }
+
         .subtext {
-          font-size: 36px;
-          font-weight: 900;
-          margin-bottom: 10px;
+          font-size: 36px; /* Adjust font size for larger text */
+          font-weight: bold; /* Add font weight if necessary */
+          margin-bottom: 4px;
         }
       }
       .faq-section {
