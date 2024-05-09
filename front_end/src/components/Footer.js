@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaGithub } from 'react-icons/fa'; // Import GitHub icon
 import './css/Footer.scss'; // Import your footer styles
 
 function Footer() {
@@ -20,13 +21,13 @@ function Footer() {
       <div className="right-section">
         <p>Follow us</p>
         <div className="social-icons">
-
-
+          {/* GitHub icon */}
+          <FaGithub className="icon" />
         </div>
       </div>
-      {/* <div className="copyright">
-        <p>&copy; 2024 John Dugan, Andew Haylett and Luis Flores. All rights reserved.</p>
-      </div> */}
+      <div className="copyright">
+        <p>&copy; 2024 John Dugan, Andrew Haylett, and Luis Flores. All rights reserved.</p>
+      </div>
     </footer>
   );
 }
