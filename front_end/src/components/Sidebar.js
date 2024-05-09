@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreateJob from './CreateJob';
 import CreateCompany from './CreateCompanyModal';
+import CreateSkill from './CreateSkill';
 import './css/Sidebar.css';
 
 const Sidebar = ({ onLogout, onJobCreate }) => {
@@ -10,24 +11,22 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
   const [showSkillsMenu, setShowSkillsMenu] = useState(false);
   const [showCreateJobModal, setShowCreateJobModal] = useState(false);
   const [showCreateCompanyModal, setShowCreateCompanyModal] = useState(false);
+  const [showCreateSkillModal, setShowCreateSkillModal] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Implement logout logic
     onLogout();
   };
 
   const navigateToObjectViewer = (dataType) => {
-    navigate('/viewer', {state: { type: dataType }});
+    navigate('/viewer', { state: { type: dataType } });
   };
 
   const toggleMenu = (menu) => {
-    // Close all menus
     setShowJobsMenu(false);
     setShowCompaniesMenu(false);
     setShowSkillsMenu(false);
 
-    // Toggle the selected menu
     if (menu === 'jobs') {
       setShowJobsMenu(!showJobsMenu);
     } else if (menu === 'companies') {
@@ -45,32 +44,20 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
     setShowCreateCompanyModal(true);
   };
 
+  const handleCreateSkillClick = () => {
+    setShowCreateSkillModal(true);
+  };
+
   const closeModal = () => {
     setShowCreateJobModal(false);
     setShowCreateCompanyModal(false);
+    setShowCreateSkillModal(false);
   };
 
   return (
-    <div className="sidebar" style={{
-        width: '100%',
-        height: '100%',
-        background: '#f0f0f0',
-        position: 'relative', /* For submenu positioning context */
-    }}>
-        <div style={{
-            padding: '0 10px'
-        }}>
-        <div style={{
-            height: '75px',
-            borderBottom: '1px solid black'
-        }}>
-            <h3>LOGO HERE</h3>
-
-        </div>
-        </div>
+    <div className="sidebar">
       <ul>
         <li><a href="/user-home">Home</a></li>
-
         <li onClick={() => toggleMenu('jobs')}>
           Jobs
           {showJobsMenu && (
@@ -80,38 +67,32 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
             </ul>
           )}
         </li>
-
         <li onClick={() => toggleMenu('companies')}>
           Companies
           {showCompaniesMenu && (
             <ul className="submenu">
-                <li onClick={handleCreateCompanyClick}>Create Company</li>
-                <li onClick={() => navigateToObjectViewer('company')}>View Companies</li>
+              <li onClick={handleCreateCompanyClick}>Create Company</li>
+              <li onClick={() => navigateToObjectViewer('company')}>View Companies</li>
             </ul>
           )}
         </li>
-
         <li onClick={() => toggleMenu('skills')}>
           Skills
           {showSkillsMenu && (
             <ul className="submenu">
-              <li><a href="#add-skills">Add Skills</a></li>
+              <li onClick={handleCreateSkillClick}>Add Skills</li>
               <li><a href="#update-skills">Update Skills</a></li>
               <li><a href="#delete-skills">Delete Skills</a></li>
             </ul>
           )}
         </li>
-
         <li><a href="#sort-jobs">Sort Jobs</a></li>
         <li><a href="#user-settings">User Settings</a></li>
         <li className="logout" onClick={handleLogout}>Log Out</li>
       </ul>
-      {showCreateJobModal && (
-        <CreateJob closeModal={closeModal} onJobCreate={onJobCreate}/>
-      )}
-      {showCreateCompanyModal && (
-        <CreateCompany closeModal={closeModal} />
-      )}
+      {showCreateJobModal && <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />}
+      {showCreateCompanyModal && <CreateCompany closeModal={closeModal} />}
+      {showCreateSkillModal && <CreateSkill closeModal={closeModal} onSkillCreate={(skill) => console.log('Skill created:', skill)} />}
     </div>
   );
 };
