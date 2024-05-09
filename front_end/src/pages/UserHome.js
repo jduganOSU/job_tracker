@@ -33,7 +33,7 @@ const UserHome = () => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', backgroundColor: 'white' }}>
       <div className='sidebarDiv' style={{
         height: '100vh',
         width: '15%'
@@ -41,8 +41,12 @@ const UserHome = () => {
         <Sidebar onLogout={handleLogout} onJobCreate={handleJobCreate} />
       </div>
       <div style={{ flex: 1, padding: '20px', textAlign: 'center' }}>
-        <h1 style={{ color: 'white'}}>Welcome to Your Dashboard</h1>
-        <p style={{ color: 'white' }}>This is your personal dashboard. From here, you can access all the features available to you.</p>
+        <h1 
+        style={{ color: 'black', fontWeight: '600', fontSize: '24px'}}>
+        Welcome to Your Dashboard
+        </h1>
+        <p style={{ color: 'black', fontWeight: '500', fontSize: '18px'}}>
+          This is your personal dashboard. From here, you can access all the features available to you.</p>
         <JobList jobs={jobs} onDeleteJob={handleJobDelete} />
       </div>
     </div>
