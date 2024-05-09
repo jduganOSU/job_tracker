@@ -32,7 +32,7 @@ const JobCard = ({ job, onDeleteSuccess }) => {
                 </div>
             </div>
             <div className="button-container">
-                <button onClick={onClickDelete}>Delete</button>
+                <button className="delete" onClick={onClickDelete}>Delete</button>
                 <button>Update</button> {/* This can later be linked to an update function */}
             </div>
         </div>
