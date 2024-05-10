@@ -1,12 +1,13 @@
 const API_BASE_URL = 'http://localhost:5040'; // Change this to the URL of your backend
 
 export const createCompany = async (companyData) => {
-    console.log('attempting post');
+  const token = localStorage.getItem('token');
   try {
     const response = await fetch(`${API_BASE_URL}/company`, { // Ensure the endpoint matches your backend route
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify(companyData)
     });
@@ -21,13 +22,14 @@ export const createCompany = async (companyData) => {
 };
 
 export const getAllCompanies = async () => {
-  console.log('Fetching all comapnies');
+  const token = localStorage.getItem('token');
   try {
       const response = await fetch(`${API_BASE_URL}/company`, { // Ensure the endpoint matches your backend route
           method: 'GET',
           headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
           }
       });
       if (!response.ok) {

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import JobList from '../components/JobList';
+import SearchBar from '../components/SearchBar'; // Import the SearchBar component
 import { getAllJobs } from '../api/jobService';
+
 
 const UserHome = () => {
   const [jobs, setJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
 
   const handleLogout = () => {
     // Logic to handle user logout
@@ -19,9 +22,23 @@ const UserHome = () => {
     try {
       const fetchedJobs = await getAllJobs();
       setJobs(fetchedJobs);
+      setFilteredJobs(fetchedJobs);  // Ensure this line is here to initialize filteredJobs
     } catch (error) {
       console.error('Error fetching jobs:', error);
     }
+  };
+
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm) {
+      setFilteredJobs(jobs); // Display all jobs if the search term is empty
+      return;
+    }
+    const term = searchTerm.toLowerCase();
+    const filtered = jobs.filter(job =>
+      job.title.toLowerCase().includes(term) ||
+      (job.skills && job.skills.some(skill => skill.toLowerCase().includes(term)))
+    );
+    setFilteredJobs(filtered);
   };
 
   const handleJobCreate = (newJob) => {
@@ -47,10 +64,12 @@ const UserHome = () => {
         </h1>
         <p style={{ color: 'black', fontWeight: '500', fontSize: '18px'}}>
           This is your personal dashboard. From here, you can access all the features available to you.</p>
-        <JobList jobs={jobs} onDeleteJob={handleJobDelete} />
+        <SearchBar onSearch={handleSearch} />
+        <JobList jobs={filteredJobs} onDeleteJob={(jobId) => setJobs(jobs.filter(job => job._id !== jobId))} />
       </div>
     </div>
   );
 };
 
 export default UserHome;
+

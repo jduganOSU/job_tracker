@@ -1,27 +1,35 @@
 const express = require('express');
 const service = require('../database/services/companyService'); 
+const { authenticateToken } = require('../helpers'); // make sure this path is correct
 
 const router = express.Router();
 
 // Endpoint to create a new company
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
-    const company = await service.createCompany(req.body);
+    // Include user ID in the company data or use it otherwise
+    const companyData = {
+      ...req.body,
+      userId: req.user.userId // Assuming the token decoding adds a userId
+    };
+    const company = await service.createCompany(companyData);
     res.status(201).json(company);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// Endpoint to retrieve all companies
-router.get('/', async (req, res) => {
+// Endpoint to retrieve all companies for user
+router.get('/', authenticateToken, async (req, res) => {
   try {
-    const companies = await service.getAllCompanies();
+    const userId = req.user.userId;
+    const companies = await service.getAllCompaniesForUser(userId);
     res.status(200).json(companies);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 // Endpoint to retrieve a company by ID
 router.get('/:id', async (req, res) => {

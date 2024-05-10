@@ -6,6 +6,11 @@ const jobService = {
         return await job.save();
     },
 
+    // Function to fetch all jobs for a specific user
+    getAllJobsForUser: async function(userId) {
+        return await Job.find({ userId: userId });
+    },
+
     getAllJobs: async function() {
         return await Job.find().populate('company skills');
     },

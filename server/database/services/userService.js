@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 const userService = {
@@ -25,6 +26,15 @@ const userService = {
   // Delete a user by ID
   deleteUser: async function(id) {
     return await User.findByIdAndDelete(id);
+  },
+
+  authenticateUser: async function(email, password) {
+    const user = await User.findOne({ email: email});
+    if (user && (password === user.password)) {
+      return user;
+    } else {
+      return null;
+    }
   }
 };
 

@@ -1,0 +1,28 @@
+.search-form {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.search-input {
+    padding: 8px 12px;
+    width: 50%;
+    border: 2px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded borders for the input field */
+    font-size: 16px; /* Slightly larger font size for better readability */
+}
+
+.search-button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #007BFF; /* Bootstrap primary blue */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded borders for the button */
+    font-size: 16px;
+    cursor: pointer; /* Cursor indicates clickable */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.search-button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}

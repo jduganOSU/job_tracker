@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const jobRoutes = require('./routes/jobs');
 const companyRoutes = require('./routes/companies');
+const userRoutes = require('./routes/users');
 
 // Database
 const connectDB = require('./database/db');
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/jobs', jobRoutes);
 app.use('/company', companyRoutes);
+app.use('/user', userRoutes);
 
 // MongoDB connection
 connectDB();

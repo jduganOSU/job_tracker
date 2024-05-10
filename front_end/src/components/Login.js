@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api/userService';
 import './css/Login.css';
 
 function Login({ onCreateAccount }) {
@@ -7,12 +8,16 @@ function Login({ onCreateAccount }) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Initialize useNavigate hook
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Placeholder for login logic - need to implement this
-    // Once the user successfully logs in, navigate to the Create Job page
-    // For demonstration purposes, let's navigate to "/create-job" immediately
-    navigate('/user-home');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await loginUser(email, password);
+      console.log('Login successful:', response);
+      // Call onLoginSuccess to update App state or redirect user
+      navigate('/user-home');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

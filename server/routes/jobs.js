@@ -1,22 +1,30 @@
 const express = require('express');
 const service = require('../database/services/jobService'); 
+const { authenticateToken } = require('../helpers'); // make sure this path is correct
 
 const router = express.Router();
 
-// Endpoint to create a new job
-router.post('/', async (req, res) => {
+// Endpoint to create a new job, with token authentication
+router.post('/', authenticateToken, async (req, res) => {
   try {
-    const job = await service.createJob(req.body);
+    // Include user ID in the job data or use it otherwise
+    const jobData = {
+      ...req.body,
+      userId: req.user.userId // Assuming the token decoding adds a userId
+    };
+
+    const job = await service.createJob(jobData);
     res.status(201).json(job);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-// Endpoint to retrieve all jobs
-router.get('/', async (req, res) => {
+// Endpoint to retrieve all jobs for user
+router.get('/', authenticateToken, async (req, res) => {
   try {
-    const jobs = await service.getAllJobs();
+    const userId = req.user.userId;
+    const jobs = await service.getAllJobsForUser(userId);
     res.status(200).json(jobs);
   } catch (error) {
     res.status(500).json({ error: error.message });

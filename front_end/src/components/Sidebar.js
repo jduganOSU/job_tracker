@@ -6,6 +6,7 @@ import { FaBuilding, FaSortAmountDown } from 'react-icons/fa';
 import { FaListCheck } from 'react-icons/fa6';
 import CreateJob from './CreateJob';
 import CreateCompany from './CreateCompanyModal';
+import CreateSkill from './CreateSkill';
 import './css/Sidebar.css';
 
 const Sidebar = ({ onLogout, onJobCreate }) => {
@@ -14,10 +15,10 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
   const [showSkillsMenu, setShowSkillsMenu] = useState(false);
   const [showCreateJobModal, setShowCreateJobModal] = useState(false);
   const [showCreateCompanyModal, setShowCreateCompanyModal] = useState(false);
+  const [showCreateSkillModal, setShowCreateSkillModal] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Implement logout logic
     onLogout();
   };
 
@@ -26,12 +27,10 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
   };
 
   const toggleMenu = (menu) => {
-    // Close all menus
     setShowJobsMenu(false);
     setShowCompaniesMenu(false);
     setShowSkillsMenu(false);
 
-    // Toggle the selected menu
     if (menu === 'jobs') {
       setShowJobsMenu(!showJobsMenu);
     } else if (menu === 'companies') {
@@ -49,9 +48,14 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
     setShowCreateCompanyModal(true);
   };
 
+  const handleCreateSkillClick = () => {
+    setShowCreateSkillModal(true);
+  };
+
   const closeModal = () => {
     setShowCreateJobModal(false);
     setShowCreateCompanyModal(false);
+    setShowCreateSkillModal(false);
   };
 
   return (
@@ -82,7 +86,6 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
         <li>
           <IoHome /><a href="/user-home"> Home</a>
         </li>
-
         <li onClick={() => toggleMenu('jobs')}>
           <IoBriefcase /><a href="#">&nbsp;Jobs</a>
           {showJobsMenu && (
@@ -92,7 +95,6 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
             </ul>
           )}
         </li>
-
         <li onClick={() => toggleMenu('companies')}>
           <FaBuilding /><a href="#">&nbsp;Companies</a>
           {showCompaniesMenu && (
@@ -102,18 +104,16 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
             </ul>
           )}
         </li>
-
         <li onClick={() => toggleMenu('skills')}>
           <FaListCheck /><a href="#">&nbsp;Skills</a>
           {showSkillsMenu && (
             <ul className="submenu">
-              <li><a href="#add-skills">Add Skills</a></li>
+              <li onClick={handleCreateSkillClick}>Add Skills</li>
               <li><a href="#update-skills">Update Skills</a></li>
               <li><a href="#delete-skills">Delete Skills</a></li>
             </ul>
           )}
         </li>
-
         <li>
           <FaSortAmountDown /><a href="#">&nbsp;Sort Jobs</a>
         </li>
@@ -124,12 +124,9 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           Log Out
         </li>
       </ul>
-      {showCreateJobModal && (
-        <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />
-      )}
-      {showCreateCompanyModal && (
-        <CreateCompany closeModal={closeModal} />
-      )}
+      {showCreateJobModal && <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />}
+      {showCreateCompanyModal && <CreateCompany closeModal={closeModal} />}
+      {showCreateSkillModal && <CreateSkill closeModal={closeModal} onSkillCreate={(skill) => console.log('Skill created:', skill)} />}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Typed from 'typed.js';
 import Navbar from '../components/Navbar';
 import FAQDropdown from '../components/FAQDropdown';
 import Footer from '../components/Footer';
