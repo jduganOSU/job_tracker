@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { IoHome, IoBriefcase } from 'react-icons/io5';
+import { IoIosSettings } from 'react-icons/io';
+import { FaBuilding, FaSortAmountDown } from 'react-icons/fa';
+import { FaListCheck } from 'react-icons/fa6';
 import CreateJob from './CreateJob';
 import CreateCompany from './CreateCompanyModal';
 import CreateSkill from './CreateSkill';
@@ -55,11 +59,35 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar" style={{
+      width: '100%',
+      height: '100%',
+      background: '#f0f0f0',
+      position: 'relative', /* For submenu positioning context */
+    }}>
+      <div style={{
+        padding: '0 10px'
+      }}>
+        <div style={{
+          height: '75px',
+          borderBottom: '1px solid lightgrey',
+          fontWeight: 'bold',
+          fontSize: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          letterSpacing: '0.75px'
+        }}>
+          <h3>Career Pilot</h3>
+
+        </div>
+      </div>
       <ul>
-        <li><a href="/user-home">Home</a></li>
+        <li>
+          <IoHome /><a href="/user-home"> Home</a>
+        </li>
         <li onClick={() => toggleMenu('jobs')}>
-          Jobs
+          <IoBriefcase /><a href="#">&nbsp;Jobs</a>
           {showJobsMenu && (
             <ul className="submenu">
               <li onClick={handleCreateJobClick}>Create Job</li>
@@ -68,7 +96,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           )}
         </li>
         <li onClick={() => toggleMenu('companies')}>
-          Companies
+          <FaBuilding /><a href="#">&nbsp;Companies</a>
           {showCompaniesMenu && (
             <ul className="submenu">
               <li onClick={handleCreateCompanyClick}>Create Company</li>
@@ -77,7 +105,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           )}
         </li>
         <li onClick={() => toggleMenu('skills')}>
-          Skills
+          <FaListCheck /><a href="#">&nbsp;Skills</a>
           {showSkillsMenu && (
             <ul className="submenu">
               <li onClick={handleCreateSkillClick}>Add Skills</li>
@@ -86,9 +114,15 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
             </ul>
           )}
         </li>
-        <li><a href="#sort-jobs">Sort Jobs</a></li>
-        <li><a href="#user-settings">User Settings</a></li>
-        <li className="logout" onClick={handleLogout}>Log Out</li>
+        <li>
+          <FaSortAmountDown /><a href="#">&nbsp;Sort Jobs</a>
+        </li>
+        <li>
+          <IoIosSettings /><a href="#">&nbsp;User Settings</a>
+        </li>
+        <li className="logout" onClick={handleLogout}>
+          Log Out
+        </li>
       </ul>
       {showCreateJobModal && <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />}
       {showCreateCompanyModal && <CreateCompany closeModal={closeModal} />}

@@ -61,3 +61,14 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.delete {
+    background-color: rgba(255, 0, 0, 0.723);
+}
+
+
+.delete:hover {
+    background-color: rgb(192, 2, 2);
+}
+
+

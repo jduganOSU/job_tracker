@@ -4,6 +4,7 @@ import Typed from 'typed.js';
 import Navbar from '../components/Navbar';
 import FAQDropdown from '../components/FAQDropdown';
 import Footer from '../components/Footer';
+import Typed from 'typed.js'; // Import Typed.js library
 import './css/HomePage.scss'; // Import Sass file
 import undrawStatsSVG from '../assets/undraw_stats.svg';
 
@@ -30,7 +31,6 @@ function HomePage() {
       typed.destroy();
     };
   }, []);
-
 
   return (
     <div className="homepage">
@@ -76,7 +76,7 @@ function HomePage() {
         <h1>Frequently Asked Questions</h1>
         <p>Our go-to resource for all inquiries. Find answers to common questions about navigating the platform, optimizing your job search, and utilizing our tracking features to their fullest.</p>
       </div>
-      {/* Include the FAQDropdown component */}
+
       <FAQDropdown />
       <Footer />
     </div>
