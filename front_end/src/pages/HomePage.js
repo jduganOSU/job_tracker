@@ -4,7 +4,6 @@ import Typed from 'typed.js';
 import Navbar from '../components/Navbar';
 import FAQDropdown from '../components/FAQDropdown';
 import Footer from '../components/Footer';
-import Typed from 'typed.js'; // Import Typed.js library
 import './css/HomePage.scss'; // Import Sass file
 import undrawStatsSVG from '../assets/undraw_stats.svg';
 
