@@ -2,10 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
     color: #040404;
 
-    padding: 25px 50px; /* Match the padding of the main content */
+    padding: 20px 65px; /* Match the padding of the main content */
 }
 
 .left-section {
@@ -33,7 +32,7 @@
     border: none;
     background-color: #fff;
     color: #333;
-    padding: 10px 20px;
+    padding: 12px 24px !important;
     border-radius: 20px;
     cursor: pointer;
 }
