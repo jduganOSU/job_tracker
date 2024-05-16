@@ -87,7 +87,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           <IoHome /><a href="/user-home"> Home</a>
         </li>
         <li onClick={() => toggleMenu('jobs')}>
-          <IoBriefcase /><a href="#">&nbsp;Jobs</a>
+          <IoBriefcase />&nbsp;Jobs
           {showJobsMenu && (
             <ul className="submenu">
               <li onClick={handleCreateJobClick}>Create Job</li>
@@ -96,7 +96,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           )}
         </li>
         <li onClick={() => toggleMenu('companies')}>
-          <FaBuilding /><a href="#">&nbsp;Companies</a>
+          <FaBuilding />&nbsp;Companies
           {showCompaniesMenu && (
             <ul className="submenu">
               <li onClick={handleCreateCompanyClick}>Create Company</li>
@@ -105,7 +105,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           )}
         </li>
         <li onClick={() => toggleMenu('skills')}>
-          <FaListCheck /><a href="#">&nbsp;Skills</a>
+          <FaListCheck />&nbsp;Skills
           {showSkillsMenu && (
             <ul className="submenu">
               <li onClick={handleCreateSkillClick}>Add Skills</li>
@@ -115,7 +115,7 @@ const Sidebar = ({ onLogout, onJobCreate }) => {
           )}
         </li>
         <li>
-          <FaSortAmountDown /><a href="#">&nbsp;Sort Jobs</a>
+          <FaSortAmountDown />&nbsp;Sort Jobs
         </li>
         <li>
           <IoIosSettings /><a href="#">&nbsp;User Settings</a>
