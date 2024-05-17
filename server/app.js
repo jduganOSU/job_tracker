@@ -5,6 +5,8 @@ require('dotenv').config();
 const jobRoutes = require('./routes/jobs');
 const companyRoutes = require('./routes/companies');
 const userRoutes = require('./routes/users');
+const skillRoutes = require('./routes/skills');
+const contactRoutes = require('./routes/contacts'); // Import the contacts routes
 
 // Database
 const connectDB = require('./database/db');
@@ -17,6 +19,8 @@ app.use(express.json());
 app.use('/jobs', jobRoutes);
 app.use('/company', companyRoutes);
 app.use('/user', userRoutes);
+app.use('/skills', skillRoutes);
+app.use('/contacts', contactRoutes); // Use the contacts routes
 
 // MongoDB connection
 connectDB();
@@ -27,4 +31,4 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5040;
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)); 
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
