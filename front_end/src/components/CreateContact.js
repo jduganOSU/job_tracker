@@ -3,7 +3,7 @@ import { createContact } from '../api/contactService';
 import { getAllCompanies } from '../api/companyService';
 import './css/CreateContact.css';
 
-const CreateContact = ({ closeModal, onContactCreate }) => {
+const CreateContact = ({ closeModal }) => {
   const [contactDetails, setContactDetails] = useState({
     name: '',
     company: '',
@@ -37,7 +37,6 @@ const CreateContact = ({ closeModal, onContactCreate }) => {
     try {
       const contact = await createContact(contactDetails);
       console.log('Contact created successfully:', contact);
-      onContactCreate(contact);
       closeModal();
     } catch (error) {
       console.error('Error creating contact:', error);

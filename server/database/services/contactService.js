@@ -1,9 +1,14 @@
-const Contact = require('../models/Contact');
+const Contact = require('../models/contact');
 
 const contactService = {
     createContact: async function(contactData) {
-        const contact = new Contact(contactData);
-        return await contact.save();
+        try {
+            const contact = new Contact(contactData);
+            return await contact.save();
+        } catch (error) {
+            console.error('Error saving contact:', error);
+            throw error;
+        }
     },
 
     getAllContacts: async function() {

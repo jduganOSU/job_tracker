@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoHome, IoBriefcase } from 'react-icons/io5';
 import { IoIosSettings } from 'react-icons/io';
@@ -20,6 +20,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
   const [showCreateContactModal, setShowCreateContactModal] = useState(false);
   const [showCreateSkillModal, setShowCreateSkillModal] = useState(false);
   const navigate = useNavigate();
+  const sidebarRef = useRef(null);
 
   const handleLogout = () => {
     onLogout();
@@ -69,8 +70,24 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
     setShowCreateSkillModal(false);
   };
 
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      setShowJobsMenu(false);
+      setShowCompaniesMenu(false);
+      setShowContactsMenu(false);
+      setShowSkillsMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
+    <div ref={sidebarRef} className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
       <div style={{ padding: '0 10px' }}>
         <div style={{ height: '75px', borderBottom: '1px solid lightgrey', fontWeight: 'bold', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', letterSpacing: '0.75px' }}>
           <h3>Career Pilot</h3>
@@ -120,7 +137,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
           <FaSortAmountDown />&nbsp;Sort Jobs
         </li>
         <li>
-          <IoIosSettings /><a href="#">&nbsp;User Settings</a>
+          <IoIosSettings />&nbsp;User Settings
         </li>
         <li className="logout" onClick={handleLogout}>
           Log Out
@@ -128,7 +145,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       </ul>
       {showCreateJobModal && <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />}
       {showCreateCompanyModal && <CreateCompany closeModal={closeModal} />}
-      {showCreateContactModal && <CreateContact closeModal={closeModal} onContactCreate={onContactCreate} />}
+      {showCreateContactModal && <CreateContact closeModal={closeModal} />}
       {showCreateSkillModal && <CreateSkill closeModal={closeModal} onSkillCreate={onSkillCreate} />} {/* Pass onSkillCreate */}
     </div>
   );

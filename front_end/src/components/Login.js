@@ -11,12 +11,11 @@ function Login({ onCreateAccount }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await loginUser(email, password);
-      console.log('Login successful:', response);
+      await loginUser(email, password);
       // Call onLoginSuccess to update App state or redirect user
       navigate('/user-home');
     } catch (error) {
-      console.log(error);
+      window.alert("Username/Emails or password error");
     }
   };
 

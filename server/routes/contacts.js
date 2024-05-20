@@ -11,7 +11,6 @@ router.post('/', authenticateToken, async (req, res) => {
             ...req.body,
             userId: req.user.userId // Assuming the token decoding adds a userId
         };
-
         const contact = await contactService.createContact(contactData);
         res.status(201).json(contact);
     } catch (error) {

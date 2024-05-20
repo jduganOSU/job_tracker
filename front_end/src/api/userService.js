@@ -15,7 +15,6 @@ export const createUser = async (userData) => {
     }
     return response.json(); // This will return the user data from the backend if successful
   } catch (error) {
-    console.error('Failed to create job:', error);
     throw error; // Re-throw the error if you want to handle it in the component
   }
 };
@@ -39,7 +38,6 @@ export const loginUser = async (email, password) => {
         localStorage.setItem('token', data.token);
         return data;
       } catch (error) {
-        console.error('Login failed:', error);
         throw error; // Re-throw the error to handle it in the calling component
       }
 };
