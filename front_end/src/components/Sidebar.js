@@ -29,10 +29,6 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
     navigate('/viewer', { state: { type: dataType } });
   };
 
-  const navigateToSkillsPage = () => {
-    navigate('/skills-list');
-  };
-
   const toggleMenu = (menu) => {
     setShowJobsMenu(false);
     setShowCompaniesMenu(false);
@@ -107,7 +103,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
           {showSkillsMenu && ( // Add submenu for skills
             <ul className="submenu">
               <li onClick={handleCreateSkillClick}>Create Skill</li>
-              <li onClick={navigateToSkillsPage}>View Skills</li>
+              <li onClick={() => navigateToObjectViewer('skill')}>View Skills</li>
             </ul>
           )}
         </li>

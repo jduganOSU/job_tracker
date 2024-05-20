@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createSkill } from '../api/skillsService';  // Adjust the path as necessary
 import './css/CreateSkill.css';  // Adjust the CSS path as necessary
 
-const CreateSkill = ({ closeModal, onSkillCreate }) => {
+const CreateSkill = ({ closeModal }) => {
   const [skillDetails, setSkillDetails] = useState({
     name: '',
     description: ''
@@ -13,7 +13,6 @@ const CreateSkill = ({ closeModal, onSkillCreate }) => {
     try {
       const skill = await createSkill(skillDetails);
       console.log('Skill created successfully:', skill);
-      onSkillCreate(skill);
       closeModal();  // Close the modal on successful skill creation
     } catch (error) {
       console.error('Error creating skill:', error);

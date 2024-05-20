@@ -4,6 +4,8 @@ import Sidebar from '../components/Sidebar';
 import ListView from '../components/ListView';
 import { getAllJobs, deleteJob } from '../api/jobService';
 import { getAllCompanies, deleteCompany } from '../api/companyService';
+import { getAllSkills } from '../api/skillsService';
+
 
 const Viewer = () => {
     const [items, setItems] = useState([]);
@@ -18,6 +20,8 @@ const Viewer = () => {
                   data = await getAllJobs();
               } else if (type === 'company') {
                   data = await getAllCompanies();
+              } else if (type === 'skill') {
+                data = await getAllSkills();
               }
               setItems(data);
           } catch (error) {

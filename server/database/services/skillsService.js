@@ -6,8 +6,8 @@ const skillService = {
         return await skill.save();
     },
 
-    getAllSkills: async function() {
-        return await Skill.find();
+    getAllSkillsForUser: async function(userId) {
+        return await Skill.find({ userId: userId });
     },
 
     getSkillById: async function(id) {

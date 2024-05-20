@@ -1,12 +1,19 @@
 const express = require('express');
 const skillsService = require('../database/services/skillsService'); 
+const { authenticateToken } = require('../helpers'); // make sure this path is correct
+
 
 const router = express.Router();
 
 // Endpoint to create a new skill
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req, res) => {
   try {
-    const skill = await skillsService.createSkill(req.body);
+    // Include user ID in the job data or use it otherwise
+    const skillData = {
+      ...req.body,
+      userId: req.user.userId // Assuming the token decoding adds a userId
+    };
+    const skill = await skillsService.createSkill(skillData);
     res.status(201).json(skill);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -14,9 +21,10 @@ router.post('/', async (req, res) => {
 });
 
 // Endpoint to retrieve all skills
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req, res) => {
   try {
-    const skills = await skillsService.getAllSkills();
+    const userId = req.user.userId;
+    const skills = await skillsService.getAllSkillsForUser(userId);
     res.status(200).json(skills);
   } catch (error) {
     res.status(500).json({ error: error.message });

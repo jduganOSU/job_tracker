@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000'; // Change this to the URL of your backend
+const API_BASE_URL = 'http://localhost:5040'; // Change this to the URL of your backend
 const token = localStorage.getItem('token'); // Ensure you have a token stored or handled appropriately
 
 // Setup axios instance for repeated use
