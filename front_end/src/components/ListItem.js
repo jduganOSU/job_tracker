@@ -18,6 +18,7 @@ const ListItem = ({ item, type, onDelete }) => {
         await deleteContact(item._id);
       }
       onDelete(item._id);  // Callback to update UI
+      alert('Item deleted successfully');
       console.log(`${type.slice(0, -1)} deleted successfully`);
     } catch (error) {
       console.error(`Failed to delete ${type.slice(0, -1)}:`, error);
@@ -44,7 +45,6 @@ const ListItem = ({ item, type, onDelete }) => {
       ) : type === 'skill' ? (
         <>
           <div>{item.name}</div>
-          <div>{item.description}</div>
         </>
       ) : (
         <>
