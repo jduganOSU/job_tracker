@@ -14,7 +14,7 @@ const ListItem = ({ item, type, onDelete }) => {
         await deleteCompany(item._id);
       } else if (type === 'skill') {
         await deleteSkill(item._id);
-      } else if (type === 'contacts') {
+      } else if (type === 'contact') {
         await deleteContact(item._id);
       }
       onDelete(item._id);  // Callback to update UI
@@ -50,6 +50,7 @@ const ListItem = ({ item, type, onDelete }) => {
         <>
           <div>{item.name}</div>
           <div>{item.company?.name}</div> {/* Ensure this displays the company name */}
+          <div>{item.role}</div>
           <div>{item.email}</div>
           <div>{item.phone}</div>
         </>

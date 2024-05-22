@@ -5,11 +5,22 @@ import './css/ListView.css';  // Ensure you have appropriate CSS for ListView
 const ListView = ({ items, type, onDelete }) => {
   const jobHeaders = ["Job Title", "Description", "Company", "Skills", "Status", "Action"];
   const companyHeaders = ["Company Name", "Location", "Industry", "Description", "Action"];
+  const contactHeaders = ["Name", "Company", "Role", "Email", "Phone", "Action"]
 
   // Determine which headers to use based on the type
-  const headers = type === 'jobs' ? jobHeaders : companyHeaders;
+  let headers;
+  let gridTemplateColumns;
 
-  const gridTemplateColumns = type === 'jobs' ? "1fr 1fr 1fr 1fr 1fr .5fr" : "1fr 1fr 1fr 1fr .5fr";
+  if (type === 'jobs') {
+    headers = jobHeaders;
+    gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr .5fr";
+  } else if (type === 'contacts') {
+    headers = contactHeaders;
+    gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr .5fr";
+  } else {
+    headers = companyHeaders;
+    gridTemplateColumns = "1fr 1fr 1fr 1fr .5fr";
+  }
 
   return (
     <div className="list-view" style={{ gridTemplateColumns }}>

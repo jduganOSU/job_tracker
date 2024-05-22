@@ -7,6 +7,7 @@ const CreateContact = ({ closeModal }) => {
   const [contactDetails, setContactDetails] = useState({
     name: '',
     company: '',
+    role: '',
     email: '',
     phone: ''
   });
@@ -67,6 +68,14 @@ const CreateContact = ({ closeModal }) => {
               <option key={company._id} value={company._id}>{company.name}</option>
             ))}
           </select>
+          <input
+            type="text"
+            name="role"
+            placeholder="Enter contact role"
+            value={contactDetails.role}
+            onChange={handleInputChange}
+            required
+          />
           <input
             type="email"
             name="email"
