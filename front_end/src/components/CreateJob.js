@@ -18,7 +18,9 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
     try {
       const job = await createJob(jobDetails);
       console.log('Job created successfully:', job);
-      onJobCreate(job);
+      if (onJobCreate) {
+        onJobCreate(job); // Call the function passed as a prop
+      }
       closeModal();  // Close the modal on successful job creation
     } catch (error) {
       console.error('Error creating job:', error);
