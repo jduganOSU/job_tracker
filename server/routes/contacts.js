@@ -18,10 +18,10 @@ router.post('/', authenticateToken, async (req, res) => {
     }
 });
 
-// Endpoint to retrieve all contacts
+// Endpoint to retrieve all contacts for the logged-in user
 router.get('/', authenticateToken, async (req, res) => {
     try {
-        const contacts = await contactService.getAllContacts();
+        const contacts = await contactService.getAllContactsByUserId(req.user.userId);
         res.status(200).json(contacts);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -29,11 +29,14 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Endpoint to retrieve a contact by ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', authenticateToken, async (req, res) => {
     try {
         const contact = await contactService.getContactById(req.params.id);
         if (!contact) {
             return res.status(404).json({ message: 'Contact not found' });
+        }
+        if (contact.userId.toString() !== req.user.userId) {
+            return res.status(403).json({ message: 'Unauthorized' });
         }
         res.status(200).json(contact);
     } catch (error) {
@@ -42,12 +45,16 @@ router.get('/:id', async (req, res) => {
 });
 
 // Endpoint to update a contact
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticateToken, async (req, res) => {
     try {
-        const updatedContact = await contactService.updateContact(req.params.id, req.body);
-        if (!updatedContact) {
+        const contact = await contactService.getContactById(req.params.id);
+        if (!contact) {
             return res.status(404).json({ message: 'Contact not found' });
         }
+        if (contact.userId.toString() !== req.user.userId) {
+            return res.status(403).json({ message: 'Unauthorized' });
+        }
+        const updatedContact = await contactService.updateContact(req.params.id, req.body);
         res.status(200).json(updatedContact);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -55,8 +62,15 @@ router.put('/:id', async (req, res) => {
 });
 
 // Endpoint to delete a contact
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken, async (req, res) => {
     try {
+        const contact = await contactService.getContactById(req.params.id);
+        if (!contact) {
+            return res.status(404).json({ message: 'Contact not found' });
+        }
+        if (contact.userId.toString() !== req.user.userId) {
+            return res.status(403).json({ message: 'Unauthorized' });
+        }
         await contactService.deleteContact(req.params.id);
         res.status(200).json({ message: 'Contact deleted successfully' });
     } catch (error) {

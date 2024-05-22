@@ -5,7 +5,6 @@ import './css/CreateSkill.css';  // Adjust the CSS path as necessary
 const CreateSkill = ({ closeModal }) => {
   const [skillDetails, setSkillDetails] = useState({
     name: '',
-    description: ''
   });
 
   const handleSkillSubmit = async (e) => {
@@ -30,7 +29,6 @@ const CreateSkill = ({ closeModal }) => {
         <h1 className="text-3xl font-semibold text-center">New Skill Entry</h1>
         <form onSubmit={handleSkillSubmit} className="skill-form">
           <input type="text" name="name" placeholder="Enter skill name" value={skillDetails.name} onChange={handleInputChange} />
-          <textarea name="description" placeholder="Enter skill description" value={skillDetails.description} onChange={handleInputChange} />
           <button type="submit">Submit</button>
         </form>
         <button onClick={closeModal}>Close</button>

@@ -15,6 +15,10 @@ const contactService = {
         return await Contact.find().populate('company');
     },
 
+    getAllContactsByUserId: async function(userId) {
+        return await Contact.find({ userId: userId }).populate('company');
+    },
+
     getContactById: async function(id) {
         return await Contact.findById(id).populate('company');
     },

@@ -2,19 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoHome, IoBriefcase } from 'react-icons/io5';
 import { IoIosSettings } from 'react-icons/io';
-import { FaBuilding, FaSortAmountDown } from 'react-icons/fa';
-import { FaListCheck } from 'react-icons/fa6';
+import { FaBuilding, FaSortAmountDown, FaListUl, FaAddressBook } from 'react-icons/fa';
 import CreateJob from './CreateJob';
 import CreateCompany from './CreateCompanyModal';
 import CreateContact from './CreateContact';
-import CreateSkill from './CreateSkill'; // Import CreateSkill component
+import CreateSkill from './CreateSkill';
 import './css/Sidebar.css';
 
-const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
+const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSortChange }) => {
   const [showJobsMenu, setShowJobsMenu] = useState(false);
   const [showCompaniesMenu, setShowCompaniesMenu] = useState(false);
-  const [showContactsMenu, setShowContactsMenu] = useState(false); // Add state for contacts menu
-  const [showSkillsMenu, setShowSkillsMenu] = useState(false); // Add state for skills menu
+  const [showContactsMenu, setShowContactsMenu] = useState(false);
+  const [showSkillsMenu, setShowSkillsMenu] = useState(false);
+  const [showSortMenu, setShowSortMenu] = useState(false); // State for the sort menu
   const [showCreateJobModal, setShowCreateJobModal] = useState(false);
   const [showCreateCompanyModal, setShowCreateCompanyModal] = useState(false);
   const [showCreateContactModal, setShowCreateContactModal] = useState(false);
@@ -34,7 +34,8 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
     setShowJobsMenu(false);
     setShowCompaniesMenu(false);
     setShowContactsMenu(false);
-    setShowSkillsMenu(false); // Reset skills menu state
+    setShowSkillsMenu(false);
+    setShowSortMenu(false); // Reset sort menu state
 
     if (menu === 'jobs') {
       setShowJobsMenu(!showJobsMenu);
@@ -42,8 +43,10 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       setShowCompaniesMenu(!showCompaniesMenu);
     } else if (menu === 'contacts') {
       setShowContactsMenu(!showContactsMenu);
-    } else if (menu === 'skills') { // Toggle skills menu
+    } else if (menu === 'skills') {
       setShowSkillsMenu(!showSkillsMenu);
+    } else if (menu === 'sort') {
+      setShowSortMenu(!showSortMenu);
     }
   };
 
@@ -76,6 +79,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       setShowCompaniesMenu(false);
       setShowContactsMenu(false);
       setShowSkillsMenu(false);
+      setShowSortMenu(false);
     }
   };
 
@@ -85,6 +89,10 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleSortChange = (sortOption) => {
+    onSortChange(sortOption); // Pass sort option to parent component
+  };
 
   return (
     <div ref={sidebarRef} className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
@@ -115,26 +123,33 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
             </ul>
           )}
         </li>
-        <li onClick={() => toggleMenu('skills')}>
-          <FaListCheck />&nbsp;Skills
-          {showSkillsMenu && ( // Add submenu for skills
-            <ul className="submenu">
-              <li onClick={handleCreateSkillClick}>Create Skill</li>
-              <li onClick={() => navigateToObjectViewer('skill')}>View Skills</li>
-            </ul>
-          )}
-        </li>
         <li onClick={() => toggleMenu('contacts')}>
-          <FaListCheck />&nbsp;Contacts
-          {showContactsMenu && ( // Add submenu for contacts
+          <FaAddressBook />&nbsp;Contacts
+          {showContactsMenu && (
             <ul className="submenu">
               <li onClick={handleCreateContactClick}>Create Contact</li>
               <li onClick={() => navigateToObjectViewer('contacts')}>View Contacts</li>
             </ul>
           )}
         </li>
-        <li>
+        <li onClick={() => toggleMenu('skills')}>
+          <FaListUl />&nbsp;Skills
+          {showSkillsMenu && (
+            <ul className="submenu">
+              <li onClick={handleCreateSkillClick}>Create Skill</li>
+              <li onClick={() => navigateToObjectViewer('skill')}>View Skills</li>
+            </ul>
+          )}
+        </li>
+        <li onClick={() => toggleMenu('sort')}>
           <FaSortAmountDown />&nbsp;Sort Jobs
+          {showSortMenu && (
+            <ul className="submenu">
+              <li onClick={() => handleSortChange('title')}>By Title</li>
+              <li onClick={() => handleSortChange('status')}>By Status</li>
+              <li onClick={() => handleSortChange('company')}>By Company</li>
+            </ul>
+          )}
         </li>
         <li>
           <IoIosSettings />&nbsp;User Settings
@@ -145,8 +160,8 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       </ul>
       {showCreateJobModal && <CreateJob closeModal={closeModal} onJobCreate={onJobCreate} />}
       {showCreateCompanyModal && <CreateCompany closeModal={closeModal} />}
-      {showCreateContactModal && <CreateContact closeModal={closeModal} />}
-      {showCreateSkillModal && <CreateSkill closeModal={closeModal} onSkillCreate={onSkillCreate} />} {/* Pass onSkillCreate */}
+      {showCreateContactModal && <CreateContact closeModal={closeModal} onContactCreate={onContactCreate} />}
+      {showCreateSkillModal && <CreateSkill closeModal={closeModal} onSkillCreate={onSkillCreate} />}
     </div>
   );
 };

@@ -1,28 +1,64 @@
 import React from 'react';
-import ListItem from './ListItem';
-import './css/ListView.css';  // Ensure you have appropriate CSS for ListView
+import './css/ListItem.css';
+import { deleteJob } from '../api/jobService';
+import { deleteCompany } from '../api/companyService';
+import { deleteSkill } from '../api/skillsService';
+import { deleteContact } from '../api/contactService';
 
-const ListView = ({ items, type, onDelete }) => {
-  const jobHeaders = ["Job Title", "Description", "Company", "Skills", "Status", "Action"];
-  const companyHeaders = ["Company Name", "Location", "Industry", "Description", "Action"];
-
-  // Determine which headers to use based on the type
-  const headers = type === 'jobs' ? jobHeaders : companyHeaders;
-
-  const gridTemplateColumns = type === 'jobs' ? "1fr 1fr 1fr 1fr 1fr .5fr" : "1fr 1fr 1fr 1fr .5fr";
+const ListItem = ({ item, type, onDelete }) => {
+  const handleDelete = async () => {
+    try {
+      if (type === 'jobs') {
+        await deleteJob(item._id);
+      } else if (type === 'company') {
+        await deleteCompany(item._id);
+      } else if (type === 'skill') {
+        await deleteSkill(item._id);
+      } else if (type === 'contacts') {
+        await deleteContact(item._id);
+      }
+      onDelete(item._id);  // Callback to update UI
+      console.log(`${type.slice(0, -1)} deleted successfully`);
+    } catch (error) {
+      console.error(`Failed to delete ${type.slice(0, -1)}:`, error);
+    }
+  };
 
   return (
-    <div className="list-view" style={{ gridTemplateColumns }}>
-      <div className="grid-header">
-        {headers.map(header => (
-          <div key={header} className="header-cell">{header}</div>
-        ))}
+    <div className="list-item">
+      {type === 'jobs' ? (
+        <>
+          <div>{item.title}</div>
+          <div>{item.description}</div>
+          <div>{item.company}</div>
+          <div>{Array.isArray(item.skills) ? item.skills.join(', ') : ''}</div> {/* Handle undefined skills */}
+          <div>{item.status}</div>
+        </>
+      ) : type === 'company' ? (
+        <>
+          <div>{item.name}</div>
+          <div>{item.location}</div>
+          <div>{item.industry}</div>
+          <div>{item.description}</div>
+        </>
+      ) : type === 'skill' ? (
+        <>
+          <div>{item.name}</div>
+          <div>{item.description}</div>
+        </>
+      ) : (
+        <>
+          <div>{item.name}</div>
+          <div>{item.company?.name}</div> {/* Ensure this displays the company name */}
+          <div>{item.email}</div>
+          <div>{item.phone}</div>
+        </>
+      )}
+      <div className="buttonDiv">
+        <button onClick={handleDelete}>Delete</button>
       </div>
-      {items.map(item => (
-        <ListItem key={item._id} item={item} type={type} onDelete={onDelete} />
-      ))}
     </div>
   );
 };
 
-export default ListView;
+export default ListItem;
