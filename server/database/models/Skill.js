@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const SkillSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  description: { type: String }, 
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to User model
+  name: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 module.exports = mongoose.model('Skill', SkillSchema);
