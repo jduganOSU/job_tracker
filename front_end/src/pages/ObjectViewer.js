@@ -9,6 +9,7 @@ import { getAllContacts, deleteContact } from '../api/contactService';
 
 const Viewer = () => {
   const [items, setItems] = useState([]);
+  const [sortCriteria, setSortCriteria] = useState(null);
   const location = useLocation();
   const { type } = location.state || { type: 'jobs' };
 
@@ -34,6 +35,18 @@ const Viewer = () => {
     fetchData();
   }, [type]);
 
+  useEffect(() => {
+    const sortItems = (items, criteria) => {
+      if (!criteria) return items;
+      return items.sort((a, b) => {
+        if (a[criteria] < b[criteria]) return -1;
+        if (a[criteria] > b[criteria]) return 1;
+        return 0;
+      });
+    };
+    setItems((prevItems) => sortItems([...prevItems], sortCriteria));
+  }, [sortCriteria]);
+
   const handleDelete = async (id) => {
     try {
       if (type === 'jobs') {
@@ -45,7 +58,7 @@ const Viewer = () => {
       } else if (type === 'contacts') {
         await deleteContact(id);
       }
-      setItems(prevItems => prevItems.filter(item => item._id !== id));
+      setItems((prevItems) => prevItems.filter(item => item._id !== id));
       console.log(`${type} deleted successfully.`);
     } catch (error) {
       console.error(`Failed to delete ${type}:`, error);
@@ -60,7 +73,7 @@ const Viewer = () => {
   return (
     <div style={{ display: 'flex' }}>
       <div className='sidebarDiv' style={{ height: '100vh', width: '15%' }}>
-        <Sidebar onLogout={handleLogout} />
+        <Sidebar onLogout={handleLogout} onSortChange={setSortCriteria} />
       </div>
       <div style={{ flex: 1, padding: '20px', textAlign: 'center' }}>
         <h1 style={{ color: 'white' }}>View your Objects</h1>
