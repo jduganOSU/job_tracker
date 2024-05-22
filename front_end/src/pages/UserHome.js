@@ -65,7 +65,7 @@ const UserHome = () => {
         <p style={{ color: 'black', fontWeight: '500', fontSize: '18px'}}>
           This is your personal dashboard. From here, you can access all the features available to you.</p>
         <SearchBar onSearch={handleSearch} />
-        <JobList jobs={filteredJobs} onDeleteJob={(jobId) => setJobs(jobs.filter(job => job._id !== jobId))} />
+        <JobList jobs={filteredJobs} onDeleteJob={handleJobDelete} />
       </div>
     </div>
   );

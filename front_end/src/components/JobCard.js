@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { deleteJob } from '../api/jobService'; // Adjust the import path as necessary
+import UpdateJob from './UpdateJob';  // Import the UpdateJob component
 import './css/JobCard.css';
 
 const JobCard = ({ job, onDeleteSuccess }) => {
-    // Function to handle the click on the delete button
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
     const onClickDelete = async () => {
         if (window.confirm(`Are you sure you want to delete "${job.title}"?`)) {
             try {
@@ -15,6 +17,14 @@ const JobCard = ({ job, onDeleteSuccess }) => {
                 console.error('Error deleting the job:', error);
             }
         }
+    };
+
+    const openUpdateModal = () => {
+        setIsUpdateModalOpen(true);
+    };
+
+    const closeUpdateModal = () => {
+        setIsUpdateModalOpen(false);
     };
 
     return (
@@ -33,8 +43,9 @@ const JobCard = ({ job, onDeleteSuccess }) => {
             </div>
             <div className="button-container">
                 <button className="delete" onClick={onClickDelete}>Delete</button>
-                <button>Update</button> {/* This can later be linked to an update function */}
+                <button onClick={openUpdateModal}>Update</button>
             </div>
+            {isUpdateModalOpen && <UpdateJob job={job} closeModal={closeUpdateModal} />}
         </div>
     );
 };
