@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+
 const jobRoutes = require('./routes/jobs');
 const companyRoutes = require('./routes/companies');
 const userRoutes = require('./routes/users');
@@ -16,6 +17,8 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(cors());
 app.use(express.json());
+
+// Routes
 app.use('/jobs', jobRoutes);
 app.use('/company', companyRoutes);
 app.use('/user', userRoutes);
