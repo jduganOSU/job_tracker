@@ -9,11 +9,12 @@ import CreateContact from './CreateContact';
 import CreateSkill from './CreateSkill';
 import './css/Sidebar.css';
 
-const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
+const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSortChange }) => {
   const [showJobsMenu, setShowJobsMenu] = useState(false);
   const [showCompaniesMenu, setShowCompaniesMenu] = useState(false);
-  const [showContactsMenu, setShowContactsMenu] = useState(false); // Add state for contacts menu
-  const [showSkillsMenu, setShowSkillsMenu] = useState(false); // Add state for skills menu
+  const [showContactsMenu, setShowContactsMenu] = useState(false);
+  const [showSkillsMenu, setShowSkillsMenu] = useState(false);
+  const [showSortMenu, setShowSortMenu] = useState(false); // State for the sort menu
   const [showCreateJobModal, setShowCreateJobModal] = useState(false);
   const [showCreateCompanyModal, setShowCreateCompanyModal] = useState(false);
   const [showCreateContactModal, setShowCreateContactModal] = useState(false);
@@ -34,6 +35,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
     setShowCompaniesMenu(false);
     setShowContactsMenu(false);
     setShowSkillsMenu(false);
+    setShowSortMenu(false); // Reset sort menu state
 
     if (menu === 'jobs') {
       setShowJobsMenu(!showJobsMenu);
@@ -43,6 +45,8 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       setShowContactsMenu(!showContactsMenu);
     } else if (menu === 'skills') {
       setShowSkillsMenu(!showSkillsMenu);
+    } else if (menu === 'sort') {
+      setShowSortMenu(!showSortMenu);
     }
   };
 
@@ -75,6 +79,7 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       setShowCompaniesMenu(false);
       setShowContactsMenu(false);
       setShowSkillsMenu(false);
+      setShowSortMenu(false);
     }
   };
 
@@ -84,6 +89,10 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const handleSortChange = (sortOption) => {
+    onSortChange(sortOption); // Pass sort option to parent component
+  };
 
   return (
     <div ref={sidebarRef} className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
@@ -132,8 +141,15 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate }) => {
             </ul>
           )}
         </li>
-        <li>
+        <li onClick={() => toggleMenu('sort')}>
           <FaSortAmountDown />&nbsp;Sort Jobs
+          {showSortMenu && (
+            <ul className="submenu">
+              <li onClick={() => handleSortChange('title')}>By Title</li>
+              <li onClick={() => handleSortChange('status')}>By Status</li>
+              <li onClick={() => handleSortChange('company')}>By Company</li>
+            </ul>
+          )}
         </li>
         <li>
           <IoIosSettings />&nbsp;User Settings
