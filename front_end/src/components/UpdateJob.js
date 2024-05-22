@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { createJob } from '../api/jobService';  // Adjust the path as necessary
-import './css/CreateJob.css'
+import React, { useState, useEffect } from 'react';
+import { updateJob } from '../api/jobService';  // Adjust the path as necessary
 
-const CreateJob = ({ closeModal, onJobCreate }) => {
+const UpdateJob = ({ job, closeModal, onJobUpdate }) => {
   const [jobDetails, setJobDetails] = useState({
     title: '',
     description: '',
@@ -13,18 +12,18 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
 
   const [skillInput, setSkillInput] = useState('');
 
+  useEffect(() => {
+    setJobDetails(job);
+  }, [job]);
+
   const handleJobSubmit = async (e) => {
     e.preventDefault();
     try {
-      const job = await createJob(jobDetails);
-
-      console.log('Job created successfully:', job);
-      if (onJobCreate) {
-        onJobCreate(job); // Call the function passed as a prop
-      }
-      closeModal();  // Close the modal on successful job creation
+      const updatedJob = await updateJob(job._id, jobDetails);
+      console.log('Job updated successfully:', updatedJob);
+      closeModal();  // Close the modal on successful job update
     } catch (error) {
-      console.error('Error creating job:', error);
+      console.error('Error updating job:', error);
     }
   };
 
@@ -50,7 +49,7 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h1 className="text-3xl font-semibold text-center">New Job Entry</h1>
+        <h1 className="text-3xl font-semibold text-center">Update Job</h1>
         <form onSubmit={handleJobSubmit} className="job-form">
           <input type="text" name="title" placeholder="Enter job title" value={jobDetails.title} onChange={handleInputChange} />
           <textarea name="description" placeholder="Enter job description" value={jobDetails.description} onChange={handleInputChange} />
@@ -78,4 +77,4 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
   );
 };
 
-export default CreateJob;
+export default UpdateJob;
