@@ -1,4 +1,13 @@
 /* ListView.css */
+body {
+  background-color: white;
+  color: black;
+}
+
+.h1 {
+  color: black;
+}
+
 .list-view {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr 3fr 1fr; /* Adjust the fr units based on content needs */
@@ -12,15 +21,16 @@
   .header-cell, .list-item div {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #807e7e;
+    border-bottom: 1px solid #807e7e34;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 4px;
   }
 
   .list-item div {
     padding: 15px;
-    color: rgb(197, 197, 197);
+    color: black;
   }
   
   .header-cell {

@@ -99,7 +99,7 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
                 <option key={skill._id} value={skill.name}>{skill.name}</option>
               ))}
             </select>
-            <button type="button" onClick={handleAddSkill}>Add Skill</button>
+            <button className="add-skill-btn" type="button" onClick={handleAddSkill}>Add Skill</button>
           </div>
           <select name="status" value={jobDetails.status} onChange={handleInputChange} required>
             <option value="open">Open</option>
@@ -108,7 +108,7 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
           </select>
           <button type="submit">Submit</button>
         </form>
-        <button onClick={closeModal}>Close</button>
+        <button className="create-db" onClick={closeModal}>Close</button>
       </div>
     </div>
   );

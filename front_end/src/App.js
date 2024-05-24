@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import CreateJob from './components/CreateJob';
 import UserHome from './pages/UserHome';
 import Viewer from './pages/ObjectViewer';
+import './tailwind.output.css';
 
 function App() {
   return (

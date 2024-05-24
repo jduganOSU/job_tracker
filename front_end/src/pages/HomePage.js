@@ -55,7 +55,7 @@ export default function Homepage() {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['Apply.', 'Track.', 'Conquer.'],
+      strings: ['Apply.', 'Track.', 'Succeed.'],
       typeSpeed: 120,
       backSpeed: 120,
       loop: true,
@@ -104,7 +104,7 @@ export default function Homepage() {
           <img src={undrawStatsSVG} alt="Undraw Stats" />
         </div>
       </motion.div>
-      <motion.div className="card green-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
+      <motion.div className="card green-card"id="features" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
         <h1>
           <span className="blue-card-text">Streamline your job hunt </span>
           with real-time tracking of every application’s progress.
@@ -122,11 +122,14 @@ export default function Homepage() {
       <motion.div className="card white-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.8 }}>
         <h1>This is another testing card</h1>
       </motion.div>
-      <motion.div className="card gray-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolledGray ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 1 }}>
+      <motion.div className="card gray-card" id="faq" initial={{ y: 25, opacity: 0 }} animate={{ y: isScrolledGray ? 0 : 25, opacity: 1 }} transition={{ duration: 0.5, delay: 1 }}>
         <h1>
           <span className="us-bank" style={{ color: '#a1a1a1' }}>Questions? <br /></span>
           View our FAQs
         </h1>
+        <p style={{ fontSize: '16px', fontWeight: '600' }}>
+          Explore commonly asked questions about Career Pilot to learn more about our platform and how it can benefit you in your job search journey.
+        </p>
       </motion.div>
       <FAQDropdown />
       <Footer />

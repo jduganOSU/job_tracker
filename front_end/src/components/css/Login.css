@@ -3,10 +3,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: inherit;
     min-height: 100vh;
-    background-image: url('../../../images/BackgroundLogin.jpg');
-    background-size: cover;
-    background-position: center;
     position: relative;
     padding: 20px;
   }
@@ -29,6 +27,11 @@
     margin-bottom: 20px;
     z-index: 2;
     text-align: center;
+  }
+
+  .welcome-text {
+    color: white;
+    font-size: 24px;
   }
   
   .form-input {

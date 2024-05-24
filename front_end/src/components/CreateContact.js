@@ -94,7 +94,7 @@ const CreateContact = ({ closeModal }) => {
           />
           <button type="submit">Submit</button>
         </form>
-        <button onClick={closeModal}>Close</button>
+        <button className="create-db" onClick={closeModal}>Close</button>
       </div>
     </div>
   );

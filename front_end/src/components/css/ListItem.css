@@ -1,3 +1,21 @@
 .buttonDiv button {
     margin: auto;
 }
+
+
+.buttonDiv button{
+    padding: 4px 8px;
+    border: 1px solid #dc3545; /* Red outline by default */
+    border-radius: 4px;
+    background-color: transparent;
+    color: #dc3545; /* Red text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  
+    /* Change color and border-color on hover */
+    &:hover {
+      background-color: #dc3545; /* Red background color */
+      color: white; /* White text color */
+      border-color: #dc3545; /* Red border color */
+    }
+  }
