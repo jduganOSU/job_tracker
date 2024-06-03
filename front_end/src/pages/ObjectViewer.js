@@ -11,7 +11,7 @@ const Viewer = () => {
   const [items, setItems] = useState([]);
   const [sortCriteria, setSortCriteria] = useState(null);
   const location = useLocation();
-  const { type } = location.state || { type: 'jobs' };
+  const { type, sortOption } = location.state || { type: 'jobs' };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,8 +44,8 @@ const Viewer = () => {
         return 0;
       });
     };
-    setItems((prevItems) => sortItems([...prevItems], sortCriteria));
-  }, [sortCriteria]);
+    setItems((prevItems) => sortItems([...prevItems], sortOption || sortCriteria));
+  }, [sortCriteria, sortOption]);
 
   const handleDelete = async (id) => {
     try {
