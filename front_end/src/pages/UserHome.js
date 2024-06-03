@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import JobList from '../components/JobList';
-import SearchBar from '../components/SearchBar'; // Import the SearchBar componen
+import SearchBar from '../components/SearchBar'; // Import the SearchBar component
 import { getAllJobs } from '../api/jobService';
 
 
