@@ -110,18 +110,14 @@ export default function Homepage() {
           with real-time tracking of every application’s progress.
         </h1>
       </motion.div>
-      <motion.div className="card black-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }}>
-        <h1>This is a test card for the site card for an image with text</h1>
-      </motion.div>
+      
       <motion.div className="card purple-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>
         <h1>
           <span className="purple-card-text">Revisit and review </span>
           your applications anytime to stay on top of your job search journey.
         </h1>
       </motion.div>
-      <motion.div className="card white-card" initial={{ y: 100, opacity: 0 }} animate={{ y: isScrolled ? 0 : 100, opacity: 1 }} transition={{ duration: 0.5, delay: 0.8 }}>
-        <h1>This is another testing card</h1>
-      </motion.div>
+      
       <motion.div className="card gray-card" id="faq" initial={{ y: 25, opacity: 0 }} animate={{ y: isScrolledGray ? 0 : 25, opacity: 1 }} transition={{ duration: 0.5, delay: 1 }}>
         <h1>
           <span className="us-bank" style={{ color: '#a1a1a1' }}>Questions? <br /></span>
