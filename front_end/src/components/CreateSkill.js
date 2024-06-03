@@ -13,6 +13,7 @@ const CreateSkill = ({ closeModal }) => {
       const skill = await createSkill(skillDetails);
       console.log('Skill created successfully:', skill);
       closeModal();  // Close the modal on successful skill creation
+      window.location.reload(); 
     } catch (error) {
       console.error('Error creating skill:', error);
     }

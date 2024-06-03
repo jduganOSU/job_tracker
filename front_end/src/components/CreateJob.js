@@ -49,6 +49,7 @@ const CreateJob = ({ closeModal, onJobCreate }) => {
         onJobCreate(job); // Call the function passed as a prop
       }
       closeModal();  // Close the modal on successful job creation
+      window.location.reload();
     } catch (error) {
       console.error('Error creating job:', error);
     }
