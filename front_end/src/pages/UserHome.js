@@ -10,8 +10,7 @@ const UserHome = () => {
   const [filteredJobs, setFilteredJobs] = useState([]);
 
   const handleLogout = () => {
-    // Logic to handle user logout
-    console.log('Logout');
+    localStorage.removeItem('token'); // Clear the token or any other user session data
   };
 
   useEffect(() => {
@@ -49,13 +48,27 @@ const UserHome = () => {
     window.location.reload();
   };
 
+  const handleSortChange = (sortOption) => {
+    const sortedJobs = [...jobs].sort((a, b) => {
+      if (sortOption === 'title') {
+        return a.title.localeCompare(b.title);
+      } else if (sortOption === 'status') {
+        return a.status.localeCompare(b.status);
+      } else if (sortOption === 'company') {
+        return a.company.localeCompare(b.company);
+      }
+      return 0;
+    });
+    setFilteredJobs(sortedJobs);
+  };
+
   return (
     <div style={{ display: 'flex', backgroundColor: 'white' }}>
       <div className='sidebarDiv' style={{
         height: '100vh',
         width: '15%'
       }}>
-        <Sidebar onLogout={handleLogout} onJobCreate={handleJobCreate} />
+        <Sidebar onLogout={handleLogout} onJobCreate={handleJobCreate} onSortChange={handleSortChange} />
       </div>
       <div style={{ flex: 1, padding: '20px', textAlign: 'center' }}>
         <h1 
@@ -72,4 +85,3 @@ const UserHome = () => {
 };
 
 export default UserHome;
-
