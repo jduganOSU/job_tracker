@@ -39,6 +39,7 @@ const CreateContact = ({ closeModal }) => {
       const contact = await createContact(contactDetails);
       console.log('Contact created successfully:', contact);
       closeModal();
+      window.location.reload();
     } catch (error) {
       console.error('Error creating contact:', error);
     }

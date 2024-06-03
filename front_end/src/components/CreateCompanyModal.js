@@ -16,6 +16,7 @@ const CreateCompany = ({ closeModal }) => {
       const company = await createCompany(companyDetails);
       console.log('Company created successfully:', company);
       closeModal();
+      window.location.reload();
     } catch (error) {
       console.error('Error creating company:', error);
     }
