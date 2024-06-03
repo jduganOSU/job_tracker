@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IoHome, IoBriefcase } from 'react-icons/io5';
 import { IoIosSettings } from 'react-icons/io';
 import { FaBuilding, FaSortAmountDown, FaListUl, FaAddressBook } from 'react-icons/fa';
@@ -23,11 +23,12 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSort
   const sidebarRef = useRef(null);
 
   const handleLogout = () => {
-    onLogout();
+    localStorage.removeItem('token'); // Clear the token or any other user session data
+    navigate('/'); // Redirect to the main login page
   };
 
-  const navigateToObjectViewer = (dataType) => {
-    navigate('/viewer', { state: { type: dataType } });
+  const navigateToObjectViewer = (dataType, sortOption = null) => {
+    navigate('/viewer', { state: { type: dataType, sortOption } });
   };
 
   const toggleMenu = (menu) => {
@@ -92,18 +93,19 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSort
 
   const handleSortChange = (sortOption) => {
     onSortChange(sortOption); // Pass sort option to parent component
+    navigateToObjectViewer('jobs', sortOption); // Navigate to viewer with sort option
   };
 
   return (
     <div ref={sidebarRef} className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
       <div style={{ padding: '0 10px' }}>
         <div style={{ height: '75px', borderBottom: '1px solid lightgrey', fontWeight: 'bold', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', letterSpacing: '0.75px' }}>
-          <h3><Link to="/">Career Pilot</Link></h3> {/* Route to HomePage */}
+          <h3>Career Pilot</h3>
         </div>
       </div>
       <ul>
         <li>
-          <IoHome /><Link to="/user-home"> Home</Link>
+          <IoHome /><a href="/user-home"> Home</a>
         </li>
         <li onClick={() => toggleMenu('jobs')}>
           <IoBriefcase />&nbsp;Jobs
