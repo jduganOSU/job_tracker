@@ -75,10 +75,10 @@ const Viewer = () => {
       <div className='sidebarDiv' style={{ height: '100vh', width: '15%' }}>
         <Sidebar onLogout={handleLogout} onSortChange={setSortCriteria} />
       </div>
-      <div style={{ flex: 1, padding: '20px', textAlign: 'center'}}>
-        <h1 style={{ color: 'black', fontSize: '20px', fontWeight: '600'}}>Your items</h1>
+      <div style={{ flex: 1, padding: '20px', textAlign: 'center' }}>
+        <h1 style={{ color: 'white' }}>View your Objects</h1>
         <div>
-          <h1 style={{ color: 'white'}}>{type.charAt(0).toUpperCase() + type.slice(1)}</h1>
+          <h1 style={{ color: 'white' }}>{type.charAt(0).toUpperCase() + type.slice(1)}</h1>
           <ListView items={items} type={type} onDelete={handleDelete} />
         </div>
       </div>
