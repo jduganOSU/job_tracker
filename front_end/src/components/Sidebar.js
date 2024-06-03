@@ -153,9 +153,6 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSort
             </ul>
           )}
         </li>
-        <li>
-          <IoIosSettings />&nbsp;User Settings
-        </li>
         <li className="logout" onClick={handleLogout}>
           Log Out
         </li>
