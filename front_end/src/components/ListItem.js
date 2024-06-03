@@ -56,7 +56,7 @@ const ListItem = ({ item, type, onDelete }) => {
         </>
       )}
       <div className="buttonDiv">
-        <button onClick={handleDelete}>Delete</button>
+        <button classname="listButton" onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );

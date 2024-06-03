@@ -1,70 +1,113 @@
-.create-account-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-image: url('../../../images/BackgroundLogin.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-.form-box {
-    background-color: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Match the width to Login.css */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-  }
-  
-.header-text, .login-text, .contact-text {
-    color: #2769b4;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-.account-form {
-    width: 100%;
-  }
-  
-.form-input {
-    width: 100%; /* Make input width match the form width */
-    padding: 12px;
-    margin-bottom: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-.submit-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #2769b4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 16px;
-  }
-  
-.login-link {
-  color: #2769b4;
-  background: none;  /* Removes the button background */
-  border: none;      /* Removes the button border */
-  padding: 0;        /* Removes padding */
-  font-size: 16px;   /* Adjust the font size as necessary */
-  cursor: pointer;   /* Ensures the cursor changes to pointer on hover */
-  text-decoration: underline;  /* Underline to mimic hyperlink */
+body {
+  background-color: black;
 }
 
-.login-link:hover {
-    text-decoration: none;  /* Optional: removes the underline on hover to mimic hyperlink behavior */
-    background: none;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: black;
+  position: relative;
+  padding: 20px;
+}
+
+.create-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.form-box {
+  background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent white */
+  backdrop-filter: blur(10px); /* Blur effect for glass effect */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Stronger shadow for more depth */
+  width: 400px; /* Adjust as needed */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome-text, .signup-text, .contact-text, .header-text, .login-text {
+  color: #1d77de;
+  margin-bottom: 20px;
+  z-index: 2;
+  text-align: center;
+}
+
+.welcome-text, .header-text {
+  color: white;
+  font-size: 24px;
+}
+
+.form-input {
+  width: 100%; /* Adjust width to match form width */
+  padding: 12px 0;
+  margin-bottom: 16px;
+  border: none;
+  border-bottom: 2px solid #1d77de; /* Blue underline */
+  border-radius: 0;
+  font-size: 16px;
+  background-color: transparent; /* Transparent background */
+  color: white; /* White text color */
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Semi-transparent white placeholder */
+}
+
+.login-button, .submit-button {
+  width: 30%;
+  padding: 12px;
+  background-color: #1d77de;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  display: block;  /* Ensure the button is a block element */
+  margin-left: auto;
+  margin-right: auto; /* Center the button */
+}
+
+.login-button-nav {
+  width: 100%;
+  padding: 12px;
+  background-color: #1d77de;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  display: block;  /* Ensure the button is a block element */
+  margin-left: auto;
+  margin-right: auto; /* Center the button */
+}
+
+.signup-link, .contact-text, .login-link {
+  color: #1d77de;
+  text-decoration: underline;
+}
+
+.signup-link {
+  background-color: none;
+}
+
+.signup-link:hover, .contact-text:hover, .login-link:hover {
+  text-decoration: none;
+  background-color: none;
+
 }

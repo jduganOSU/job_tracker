@@ -31,7 +31,7 @@ const CreateSkill = ({ closeModal }) => {
           <input type="text" name="name" placeholder="Enter skill name" value={skillDetails.name} onChange={handleInputChange} />
           <button type="submit">Submit</button>
         </form>
-        <button onClick={closeModal}>Close</button>
+        <button className="create-db" onClick={closeModal}>Close</button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { IoHome, IoBriefcase } from 'react-icons/io5';
 import { IoIosSettings } from 'react-icons/io';
 import { FaBuilding, FaSortAmountDown, FaListUl, FaAddressBook } from 'react-icons/fa';
@@ -98,12 +98,12 @@ const Sidebar = ({ onLogout, onJobCreate, onContactCreate, onSkillCreate, onSort
     <div ref={sidebarRef} className="sidebar" style={{ width: '100%', height: '100%', background: '#f0f0f0', position: 'relative' }}>
       <div style={{ padding: '0 10px' }}>
         <div style={{ height: '75px', borderBottom: '1px solid lightgrey', fontWeight: 'bold', fontSize: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', letterSpacing: '0.75px' }}>
-          <h3>Career Pilot</h3>
+          <h3><Link to="/">Career Pilot</Link></h3> {/* Route to HomePage */}
         </div>
       </div>
       <ul>
         <li>
-          <IoHome /><a href="/user-home"> Home</a>
+          <IoHome /><Link to="/user-home"> Home</Link>
         </li>
         <li onClick={() => toggleMenu('jobs')}>
           <IoBriefcase />&nbsp;Jobs

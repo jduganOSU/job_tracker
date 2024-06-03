@@ -15,12 +15,12 @@ const Navbar = () => {
         <div className="logo">Career Pilot</div>
       </div>
       <div className="middle-section">
-        <a href="#about">About</a>
+        <a href="">About</a>
         <a href="#features">Features</a>
-        <a href="#guide">Guide</a>
+        <a href="#faq">FAQs</a>
       </div>
       <div className="right-section">
-        <button className="login-button" onClick={handleLoginButtonClick}>
+        <button className="login-button-nav" onClick={handleLoginButtonClick}>
           Login
         </button>
       </div>
