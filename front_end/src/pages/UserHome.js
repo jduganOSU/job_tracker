@@ -46,7 +46,7 @@ const UserHome = () => {
   };
 
   const handleJobDelete = (jobId) => {
-    setJobs(jobs.filter(job => job._id !== jobId));
+    window.location.reload();
   };
 
   return (
