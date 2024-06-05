@@ -11,7 +11,7 @@
     "start:front_end": "cd front_end && npm start",
     "start:server": "cd server && npm start",
     "start:all": "concurrently \"npm run start:server\" \"npm run start:front_end\"",
-    "install:root_and_all": "npm install && npm run install:all"
+    "install:project": "npm install && npm run install:all"
   },
   "keywords": [],
   "author": "",
