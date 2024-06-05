@@ -2,6 +2,7 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; // Change this to the U
 
 export const createUser = async (userData) => {
     console.log('attempting post');
+    console.log('API_BASE_URL:', API_BASE_URL);
   try {
     const response = await fetch(`${API_BASE_URL}/user`, { // Ensure the endpoint matches your backend route
       method: 'POST',
