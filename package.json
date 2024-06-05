@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install:front_end": "cd front_end && npm install",
-    "install:server": "cd server && npm install",
+    "install:front_end": "cd frontend && npm install",
+    "install:server": "cd backend && npm install",
     "install:all": "npm-run-all --parallel install:front_end install:server",
-    "start:front_end": "cd front_end && npm start",
-    "start:server": "cd server && npm start",
+    "start:front_end": "cd frontend && npm start",
+    "start:server": "cd backend && npm start",
     "start:all": "concurrently \"npm run start:server\" \"npm run start:front_end\"",
-    "install:project": "npm install && npm run install:all"
+    "install:project": "npm install && npm run install:all",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend"
+
   },
   "keywords": [],
   "author": "",

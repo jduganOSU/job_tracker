@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5040'; // Change this to the URL of your backend
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL; // Change this to the URL of your backend
 
 export const createUser = async (userData) => {
     console.log('attempting post');
